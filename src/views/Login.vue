@@ -15,25 +15,28 @@
         <button type="submit">Login</button>
         </div>
     </form>
+    <router-link to="/register">Register</router-link>
   </div>
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
-  name: "loginRegister",
-  created() {},
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  props: {},
-  methods: {
-    onSubmit(){
-      
-    }
-  },
+    name: "loginRegister",
+    created() { },
+    data() {
+        return {
+            email: "",
+            password: "",
+        };
+    },
+    props: {},
+    methods: {
+        onSubmit() {
+        }
+    },
+    components: { RouterLink }
 };
 </script>
 <style scoped>

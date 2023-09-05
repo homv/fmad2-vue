@@ -6,10 +6,26 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+      path: '/',
+      redirect: () => {
+        const token = localStorage.getItem('token')
+        if(token){
+          return '/home'
+        }else{
+          return '/login'
+        }
+      }
+  }
+  ,{
+    path: '/login',
     name: 'loginRegister',
     component: () => import('../views/Login.vue')
   },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/Register.vue')
+  }
 
 ]
 
