@@ -35,11 +35,22 @@ export default {
     },
     mounted() {
     },
-    methods: {},
+    methods: {
+        onSubmit(){
+            this.$store.dispatch('register', {
+                email: this.email,
+                username: this.name,
+                password: this.password,
+            }).then((data) => {
+                console.log(data);
+                this.$router.push('/login');
+            });
+        }
+    },
 
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
