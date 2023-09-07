@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         onSubmit(){
-            this.$store.dispatch('register', {
+            this.$store.dispatch('loginRegister/register', {
                 email: this.email,
                 username: this.name,
                 password: this.password,

@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router';
 
 export default {
     name: "loginRegister",
@@ -34,9 +33,19 @@ export default {
     props: {},
     methods: {
         onSubmit() {
+          this.$store.dispatch("loginRegister/login", {
+            email: this.email,
+            password: this.password,
+          }).then((data) => {
+            console.log(data);
+            if(data.role == "admin"){
+              this.$router.push("/admin");
+            }else{
+              this.$router.push("/user");
+            }
+          });
         }
     },
-    components: { RouterLink }
 };
 </script>
 <style scoped>
