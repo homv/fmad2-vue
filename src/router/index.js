@@ -1,50 +1,51 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-      path: '/',
-      redirect: () => {
-        const token = localStorage.getItem('token')
-        if(token){
-          return '/home'
-        }else{
-          return '/login'
-        }
+    path: "/",
+    redirect: () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        return "/home";
+      } else {
+        return "/login";
       }
-  }
-  ,{
-    path: '/login',
-    name: 'loginRegister',
-    component: () => import('../views/Login.vue')
+    },
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('../views/Register.vue')
+    path: "/login",
+    name: "loginRegister",
+    component: () => import("../views/Login.vue"),
   },
   {
-      path: '/admin',
-      name: 'home',
-      component: () => import('../views/AdminHome.vue'),
-      children : [
-        {
-          path: 'addVenue',
-          name: 'addVenue',
-          component: () => import('../views/AddVenue.vue')
-        }
-      ]
+    path: "/register",
+    name: "register",
+    component: () => import("../views/Register.vue"),
+  },
+  {
+    path: "/admin",
+    name: "home",
+    component: () => import("../views/AdminHome.vue"),
+  },
+  {
+    path: "/addVenue",
+    name: "addVenue",
+    component: () => import("../views/AddVenue.vue"),
+  },
+  {
+    path: "/VenueDetails/:id",
+    name: "VenueDetails",
+    component: () => import("../views/VenueDet.vue"),
   }
-
-]
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

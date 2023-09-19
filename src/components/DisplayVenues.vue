@@ -1,6 +1,12 @@
 <template>
   <div>
   Venues
+  <div v-for="venue in venue_list" :key="venue.id" @click="storedet(venue)" style="cursor:pointer">
+    <h3>{{venue.name}}</h3>
+    <p>Capacity: {{venue.capacity}}</p>
+    <p>Address: {{venue.street}}, {{venue.landmark}}, {{venue.pincode}}, {{venue.city}}, {{venue.state}}</p>
+    <p>Purpose: {{venue.purpose}}</p>
+    </div>
   </div>
 </template>
 
@@ -19,7 +25,12 @@ export default {
     };
   },
   props: {},
-  methods: {},
+  methods: {
+    storedet(venue){
+      this.$store.commit("venueManagement/setVenue", venue);
+      this.$router.push("/VenueDetails/"+venue.id);
+    }
+  },
 };
 </script>
 

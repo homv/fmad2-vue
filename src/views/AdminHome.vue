@@ -1,8 +1,7 @@
 <template>
   <div>
     <DisplayVenues></DisplayVenues>
-  <router-view></router-view>
-    <router-link to="/admin/addVenue">Add Venue</router-link>
+    <router-link to="/addVenue">Add Venue</router-link>
   </div>
 </template>
 
