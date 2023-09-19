@@ -8,12 +8,14 @@ const host = 'http://127.0.0.1:5000'
 const VenueManagement = {
   namespaced: true,
   actions:{
-    async addVenue(context, payload){
+    async addVenue(payload){
       try{
-        const response = await fetch(host + '/add_venue',{
+        const token = localStorage.getItem('token')
+        const response = await fetch(host + '/venue/add_venue',{
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth-tok':token
           },
           body: JSON.stringify(payload)
         })
@@ -24,7 +26,27 @@ const VenueManagement = {
       catch(error){
         console.log(error);
       }
-    } 
+    },
+    async getVenues(){
+      try{
+        const token = localStorage.getItem('token')
+        const response = await fetch(host + '/venue/get_venues',{
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-tok':token
+          }
+        })
+        const data = await response.json()
+        return data
+
+      }
+      catch(error){
+        console.log(error);
+        return error
+      }
+      
+    }
   }
 }
 
@@ -33,7 +55,7 @@ const loginRegister = {
   actions:{
     async register(context, payload){
       try{
-        const response = await fetch(host + '/register',{
+        const response = await fetch(host + '/register_user',{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

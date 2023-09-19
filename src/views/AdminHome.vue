@@ -1,5 +1,6 @@
 <template>
   <div>
+    <DisplayVenues></DisplayVenues>
   <router-view></router-view>
     <router-link to="/admin/addVenue">Add Venue</router-link>
   </div>
@@ -7,6 +8,7 @@
 
 <script>
 
+import DisplayVenues from '../components/DisplayVenues.vue'
 
 export default {
     name: "AdminHome",
@@ -16,6 +18,10 @@ export default {
     },
     props: {},
     methods: {},
+    components: {
+      DisplayVenues
+    }
+
 };
 </script>
 

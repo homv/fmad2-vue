@@ -28,11 +28,16 @@
           <label for="venueCity">City:</label>
           <input type="text" name="venueCity" id="venueCity" v-model="venueCity">
         </div>
+        <div>
+        <label for="venueState">State:</label>
+        <input type="text" name="venueState" id="venueState" v-model="venueState">
+        </div>
         </div>
         <div>
           <label for="venuePurpose">Purpose:</label>
           <input type="text" name="venuePurpose" id="venuePurpose" v-model="venuePurpose">
         </div>
+        <button type="submit">Add Venue</button>
     </form>
   </div>
 </template>
@@ -51,6 +56,7 @@ export default {
       venuePincode: "",
       venueCity: "",
       venuePurpose: "",
+      venueState: "",
     };
   },
   props: {},
@@ -59,16 +65,19 @@ export default {
       this.$store.dispatch(
         "venueManagement/addVenue",
         {
-          venueName: this.venueName,
-          venueCapacity: this.venueCapacity,
-          venueStreet: this.venueStreet,
-          venueLandmark: this.venueLandmark,
-          venuePincode: this.venuePincode,
-          venueCity: this.venueCity,
-          venuePurpose: this.venuePurpose,
-        },
-        { root: true }
-      )
+          name: this.venueName,
+          capacity: this.venueCapacity,
+          street: this.venueStreet,
+          landmark: this.venueLandmark,
+          pincode: this.venuePincode,
+          city: this.venueCity,
+          purpose: this.venuePurpose,
+          state: this.venueState,
+        }
+      ).then((data) => {
+        console.log(data);
+        this.$router.push("/admin");
+      });
     }
   },
 };

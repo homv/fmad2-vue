@@ -38,6 +38,7 @@ export default {
             password: this.password,
           }).then((data) => {
             console.log(data);
+            localStorage.setItem("token", data.token);
             if(data.role == "admin"){
               this.$router.push("/admin");
             }else{
