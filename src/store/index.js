@@ -80,6 +80,21 @@ const VenueManagement = {
     catch(error){
       console.log(error);
     }
+    },
+    deleteVenue(context, payload){
+      try{
+        const token = localStorage.getItem('token')
+        fetch(host + '/venue/delete/' + payload,{
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-tok':token
+          }
+        })
+      }
+      catch(error){
+        console.log(error);
+      }
     }
   }
 }

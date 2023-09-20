@@ -9,7 +9,7 @@ const routes = [
     redirect: () => {
       const token = localStorage.getItem("token");
       if (token) {
-        return "/home";
+        return "/admin";
       } else {
         return "/login";
       }
