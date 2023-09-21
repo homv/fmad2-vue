@@ -1,28 +1,54 @@
 <template>
   <div>
-  <h1>{{venue.name}}</h1>
-  <p>Capacity: {{venue.capacity}}</p>
-  <p>Address: {{venue.street}}, {{venue.landmark}}, {{venue.pincode}}, {{venue.city}}, {{venue.state}}</p>
-  <p>Purpose: {{venue.purpose}}</p>
-  <h2>Events</h2>
+    <h1>{{ venue.name }}</h1>
+    <p>Capacity: {{ venue.capacity }}</p>
+    <p>
+      Address: {{ venue.street }}, {{ venue.landmark }}, {{ venue.pincode }},
+      {{ venue.city }}, {{ venue.state }}
+    </p>
+    <p>Purpose: {{ venue.purpose }}</p>
+    <h2>Events</h2>
+    <h3 v-if="events.length == 0">No Events Added</h3>
+    <div>
+      <router-link :to="{name:'addtoVenue'}">Add Event to {{venue.name}}</router-link>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
   name: "VenueDet",
-  mounted() {
-    const venue = this.$store.getters["venueManagement/getVenue"][this.$route.params.id];
-    if (!venue){
-      this.$store.dispatch("venueManagement/getSpecVenue", this.$route.params.id).then((data) => {
+  async mounted() {
+    const venue =
+      this.$store.getters["venueManagement/getVenue"][this.$route.params.id];
+    if (!venue) {
+      try {
+        const data = await this.$store.dispatch(
+          "venueManagement/getSpecVenue",
+          this.$route.params.id
+        );
         this.venue = data;
-      })
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      this.venue = venue;
     }
-
+    try {
+      const data = await this.$store.dispatch(
+        "eventManagement/getEventsonVenue",
+        this.$route.params.id
+      );
+      this.events = data;
+    } catch (error) {
+      console.log(error);
+    }
   },
   data() {
     return {
-      venue: this.$store.getters["venueManagement/getVenue"][this.$route.params.id],
+      venue: [],
+      events:[]
     };
   },
   props: {},
