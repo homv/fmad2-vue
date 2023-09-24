@@ -80,7 +80,7 @@ export default {
         })
         .then((data) => {
           console.log(data);
-          this.$router.push({ name: "VenueDetails/"+this.$route.query.venueid });
+          this.$router.push({ name: "home" });
         });
     },
   },
