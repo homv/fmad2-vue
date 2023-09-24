@@ -9,7 +9,7 @@ const routes = [
     redirect: () => {
       const token = localStorage.getItem("token");
       if (token) {
-        return "/admin";
+        return "/user";
       } else {
         return "/login";
       }
@@ -49,6 +49,26 @@ const routes = [
     path: "/addtoVenue/:id",
     name: "addtoVenue",
     component: () => import("../views/AddEventVenue.vue"),
+  },
+  {
+    path: "/addtoEvent",
+    name: "addtoEvent",
+    component: () => import("../views/EventVenDet.vue"),
+  },
+  {
+    path:"/user",
+    name:"user",
+    component: () => import("../views/UserHome.vue"),
+  },
+  {
+    path:"/book",
+    name:"book",
+    component: () => import("../views/RegisterEvent.vue"),
+  },
+  {
+    path:'/myTickets',
+    name:'myTickets',
+    component: () => import("../views/DisplayTickets.vue"),
   }
 ];
 

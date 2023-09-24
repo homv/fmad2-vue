@@ -14,6 +14,10 @@
                 <label for="password">Password </label>
                 <input type="password" v-model="password" name="password" id="password" />
             </div>
+             <div>
+                <label for="pincode">Pincode </label>
+                <input type="text" v-model="pincode" name="pincode" id="pincode" />
+            </div>
             <div>
                 <button type="submit">Register</button>
             </div>
@@ -31,6 +35,7 @@ export default {
             email: '',
             name: '',
             password: '',
+            pincode:''
         };
     },
     mounted() {
@@ -41,6 +46,7 @@ export default {
                 email: this.email,
                 username: this.name,
                 password: this.password,
+                pincode: this.pincode
             }).then((data) => {
                 console.log(data);
                 this.$router.push('/login');
