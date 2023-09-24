@@ -2,7 +2,7 @@
   <div class="container mt-5">
     <h1 class="mb-4">My Tickets</h1>
     <div>
-    <h3 class="form-subtitle"><i class="bi bi-ticket"></i> Upcoming Events</h3>
+    <h3 class="form-subtitle"><i class="bi bi-ticket"></i> Completed Events</h3>
       <ul class="ticket-list">
         <li v-for="ticket in tickets" :key="ticket.id" class="ticket-item">
           <div class="ticket-header">
@@ -30,7 +30,6 @@
 
 <script>
 export default {
-
   mounted() {
     this.$store.dispatch("ticketManagement/getTickets").then((response) => {
       this.tickets = response;
@@ -41,9 +40,6 @@ export default {
       tickets: [],
     };
   },
-  methods:{
-
-  }
 };
 </script>
 

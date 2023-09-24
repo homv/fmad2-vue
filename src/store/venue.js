@@ -91,6 +91,41 @@ export const VenueManagement = {
           console.log(error);
         }
       },
+      async getTodaySlots(context, payload){
+        try{
+            const token = localStorage.getItem('token')
+            const response = await fetch(host + '/get_today_slots?venue_id='+payload.venue_id+'&date='+ payload.date ,{
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'auth-tok':token
+              }
+            })
+            const data = await response.json()
+            return data
+        }
+        catch(error){
+          console.log(error);
+        }
+      },
+      async csvJobs(context, payload){
+        try{
+          const token = localStorage.getItem('token')
+          const response = await fetch(host + '/venue/start_async_job/' + payload,{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'auth-tok':token
+            },
+          })
+          const data = await response.json()
+          return data
+  
+        }
+        catch(error){
+          console.log(error);
+        }
+      }
     }
   }
 

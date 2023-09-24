@@ -56,7 +56,8 @@ export const TicketManagement = {
         }
         catch(error){
             console.log(error);
-        }}
+        }},
+        
 
     }
 };

@@ -69,6 +69,10 @@ const routes = [
     path:'/myTickets',
     name:'myTickets',
     component: () => import("../views/DisplayTickets.vue"),
+  },
+  {
+    path:'*',
+    redirect:'/'
   }
 ];
 
